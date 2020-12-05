@@ -1,58 +1,37 @@
 <!--
-FILE: home.html
-Zach Dilliha, WKU 2020
-CS 396
-
-This is the home screen where it lists all the Boards
+home.html - This is the home screen template which displays the book search bar and the book list.
 -->
 {% extends 'base.html' %}
 
-{% load humanize %}
-
-{% block breadcrumb %}
-  <li class="breadcrumb-item active">Boards</li>
-{% endblock %}
-
 {% block content %}
-  <table class="table">
-    <thead class="thead-inverse">
-      <tr>
-        <th>Board</th>
-        <th>Posts</th>
-        <th>Topics</th>
-        <th>Last Post</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for board in boards %}
-        <tr>
-          <td>
-            <a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
-            <small class="text-muted d-block">{{ board.description }}</small>
-          </td>
-          <td class="align-middle">
-            {{ board.get_posts_count }}
-          </td>
-          <td class="align-middle">
-            {{ board.topics.count }}
-          </td>
-          <td class="align-middle">
-            {% with post=board.get_last_post %}
-            {% if post %}
-              <small>
-                <a href="{% url 'topic_posts' board.pk post.topic.pk %}">
-                  By {{ post.created_by.username }}, {{ post.created_at|naturaltime }}
-                </a>
-              </small>
-              {% else %}
-              <small class="text-muted">
-                <em>No Posts Yet.</em>
-              </small>
-              {% endif %}
-            {% endwith %}
-          </td>
-        </tr>
-      {% endfor %}
+  <h2> Book List </h2>
+  <p>
+    <form action="{% url 'home' %}" method="get">
+      <input name="q" type="text" placeholder="Enter text here">
+    </form>
+  </p>
+  <h6> Search by Title or Author </h6>
+
+<table class="table mb-0">
+  <thead>
+    <tr>
+      <th>Book Title</th>
+      <th>Book Author</th>
+      <th>Published Date</th>
+      <th>Places to Purchase</th>
+      <th>Lowest Price Available</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in object_list %}
+    <tr>
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.published_date }}</td>
+      <td>{{ book.places_to_purchase }}</td>
+      <td>{{ book.lowest_price }}</td>
+    </tr>
+    {% endfor %}
     </tbody>
   </table>
-{% endblock %}
+  {% endblock %}

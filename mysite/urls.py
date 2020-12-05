@@ -24,7 +24,7 @@ from boards import views
 from database import views as db_views
 
 urlpatterns = [
-    url(r'^$', views.BoardListView.as_view(), name='home'),
+    url(r'^$', db_views.BookSearchResultsView.as_view(), name='home'),
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
@@ -34,20 +34,6 @@ urlpatterns = [
 
     url(r'^admin/', admin.site.urls, name='admin'),
 
-    url(r'^reset/$',
-        auth_views.PasswordResetView.as_view(
-            template_name='password_reset.html',
-            email_template_name='password_reset_email.html',
-            subject_template_name='password_reset_subject.txt'
-        ),
-        name='password_reset'),
-    url(r'^reset/done/$', auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'), name='password_reset_done'),
-    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'), name='password_reset_confirm'),
-    url(r'^reset/complete/$', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), name='password_reset_complete'),
-    url(r'^settings/password/$', auth_views.PasswordChangeView.as_view(template_name='password_change.html'), name='password_change'),
-    url(r'^settings/password/done/$', auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'), name='password_change_done'),
-
-
     url(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/$', views.topic_posts, name='topic_posts'),
     url(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/reply/$', views.reply_topic, name='reply_topic'),
 
@@ -56,26 +42,6 @@ urlpatterns = [
 
     url(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/$', views.PostListView.as_view(), name='topic_posts'),
     url(r'^settings/account/$', accounts_views.UserUpdateView.as_view(), name='my_account'),
-
-
-    url(r'^files/$', views.file_list, name='file_list'),
-    url(r'^files/upload/$', views.upload_file, name='upload_file'),
-    url(r'^files/(?P<pk>\d+)/', views.delete_file, name='delete_file'),
-
-    #url(r'^database/$', db_views.db_home, name='db_home'),
-    url(r'^database/$', db_views.DatabasePageView.as_view(), name='database_home'),
-    url(r'database/cities/', db_views.CitySearchResultsView.as_view(), name='city_search_results'),
-    url(r'database/vehicles/', db_views.VehicleSearchResultsView.as_view(), name='vehicle_search_results'),
-    url(r'database/powerplant/', db_views.PowerPlantSearchResultsView.as_view(), name='powerplant_search_results'),
-
-
-
-    #WIP
-#    url(r'^boards/(?P<board_pk>\d+)/topics/(?P<pk>\d+)', views.delete_topic, name='delete_topic'),
-
-
-
-
 ]
 
 if settings.DEBUG:

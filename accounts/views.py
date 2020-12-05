@@ -20,9 +20,6 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
-
-
-
 @method_decorator(login_required, name='dispatch')
 class UserUpdateView(UpdateView):
     model = User
@@ -31,6 +28,4 @@ class UserUpdateView(UpdateView):
     success_url = reverse_lazy('my_account')
 
     def get_object(self):
-        return self.request.user 
-
-# Create your views here.
+        return self.request.user
