@@ -24,6 +24,7 @@ home.html - This is the home screen template which displays the book search bar 
       <th>Published Date</th>
       <th>Places to Purchase</th>
       <th>Lowest Price Available</th>
+      <th>General Review</th>
     </tr>
   </thead>
   <tbody>
@@ -34,6 +35,7 @@ home.html - This is the home screen template which displays the book search bar 
       <td>{{ book.published_date }}</td>
       <td>{{ book.places_to_purchase }}</td>
       <td>{{ book.lowest_price }}</td>
+      <td>{{ book.general_review }}</td>
     </tr>
     {% endfor %}
     </tbody>
