@@ -4,13 +4,17 @@ home.html - This is the home screen template which displays the book search bar 
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2> Book List </h2>
-  <p>
-    <form action="{% url 'home' %}" method="get">
-      <input name="q" type="text" placeholder="Enter text here">
-    </form>
-  </p>
-  <h6> Search by Title or Author </h6>
+  <center>
+    <br>
+    <h2> Book List </h2>
+    <hr>
+    <br>
+      <form action="{% url 'home' %}" method="get">
+        <input name="q" type="text" size="80" placeholder="Search by book title or by book author">
+      </form>
+  </center>
+  <br>
+  <br>
 
 <table class="table mb-0">
   <thead>

@@ -7,10 +7,8 @@ from django.views.generic import UpdateView, ListView
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.decorators import method_decorator
-from django.core.files.storage import FileSystemStorage
 from django.conf import settings
-from .forms import NewTopicForm, PostForm, FileForm
-from .models import Board, Topic, Post, File
+from .models import Board, Topic, Post
 
 #ListView to list out all of the Boards
 class BoardListView(ListView):
@@ -129,39 +127,6 @@ def reply_topic(request, pk, topic_pk):
     else:
         form = PostForm()
     return render(request, 'reply_topic.html', {'topic': topic, 'form': form})
-
-
-
-def file_list(request):
-    files = File.objects.all()
-    return render(request, 'file_list.html', { 'files': files })
-
-@login_required
-def upload_file(request):
-    if request.method == 'POST':
-        form = FileForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('file_list')
-    else:
-        form = FileForm()
-    return render(request, 'upload_file.html', { 'form' : form })
-
-
-def delete_file(request, pk):
-    if request.method == 'POST':
-        file = File.objects.get(pk=pk)
-        file.delete()
-        return redirect('file_list')
-
-#This is a WIP
-#def delete_topic(request, board_pk, pk):
-#    if request.method == 'POST':
-#        topic = Topic.objects.get(pk=pk)
-         #board_pk=topic.board.pk
-#        topic.delete()
-#        return redirect('board_topics', board_pk=board_pk)
-
 
 
 @method_decorator(login_required, name='dispatch')

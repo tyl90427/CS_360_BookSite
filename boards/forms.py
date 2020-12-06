@@ -1,5 +1,5 @@
 from django import forms
-from .models import Topic, Post, File
+from .models import Topic, Post
 
 class NewTopicForm(forms.ModelForm):
     message = forms.CharField(
@@ -18,10 +18,3 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['message', ]
-
-
-class FileForm(forms.ModelForm):
-
-    class Meta:
-        model = File
-        fields = ('title', 'pdf')

@@ -66,16 +66,3 @@ class Post(models.Model):
 #enables markdown syntax to customize messages
     def get_message_as_markdown(self):
         return mark_safe(markdown(self.message, safe_mode='escape'))
-
-
-
-class File(models.Model):
-    title = models.CharField(max_length=100)
-    pdf = models.FileField(upload_to='files/pdfs/')
-
-    def __str__(self):
-        return self.title
-#overwrite the delete() method so it actually deletes the file in the media/files/pdf folder
-    def delete(self, *args, **kwargs):
-        self.pdf.delete()
-        super().delete(*args, **kwargs)

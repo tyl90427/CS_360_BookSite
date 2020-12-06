@@ -1,5 +1,5 @@
 <!--
-
+base.html - This is the basic template for the website structure which most other templates will use and add onto.
 -->
 
 {% load static %}
@@ -29,7 +29,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
               <a class="dropdown-item" href="{% url 'my_account' %}">My account</a>
-              <!--If the user is a staff member, they can go to the staff site from the dropdown menu. -->
+              <!--If the user is a staff member, they can access the staff site from the dropdown menu. -->
               {% if user.is_superuser %}
               <a class="dropdown-item" href="{% url 'admin:index' %}" target="_blank">Staff Site</a>
               {% endif %}
