@@ -25,6 +25,7 @@ from database import views as db_views
 
 urlpatterns = [
     url(r'^$', db_views.BookSearchResultsView.as_view(), name='home'),
+    url(r'^boards/$', views.BoardListView.as_view(), name='board'),
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),

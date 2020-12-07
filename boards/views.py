@@ -8,13 +8,14 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.conf import settings
+from .forms import NewTopicForm, PostForm
 from .models import Board, Topic, Post
 
 #ListView to list out all of the Boards
 class BoardListView(ListView):
     model = Board
     context_object_name = 'boards'
-    template_name = 'home.html'
+    template_name = 'board.html'
 
 #ListVIew to list out all of the topics within a Board
 class TopicListView(ListView):
