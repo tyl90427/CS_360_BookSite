@@ -8,17 +8,9 @@ This page shows the posts/replies on a certain topic.
 
 {% block title %}{{ topic.subject }}{% endblock %}
 
-{% block breadcrumb %}
-  <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
-  <li class="breadcrumb-item"><a href="{% url 'board_topics' topic.board.pk %}">{{ topic.board.name }}</a></li>
-  <li class="breadcrumb-item active">{{ topic.subject }}</li>
-{% endblock %}
-
 {% block content %}
 
-  <div class="mb-4">
-    <a href="{% url 'reply_topic' topic.board.pk topic.pk %}" class="btn btn-primary" role="button">Reply</a>
-  </div>
+  <br>
 
   {% for post in topic.posts.all %}
     <div id="{{ post.pk }}" class="card {% if forloop.last %}mb-4{% else %}mb-2{% endif %} {% if forloop.first %}border-dark{% endif %}">
@@ -59,5 +51,11 @@ This page shows the posts/replies on a certain topic.
   {% endfor %}
 
   {% include 'includes/pagination.html' %}
+
+  <center>
+    <div class="mb-4">
+      <a href="{% url 'reply_topic' topic.board.pk topic.pk %}" class="btn btn-primary" role="button">Reply</a>
+    </div>
+  </center>
 
 {% endblock %}

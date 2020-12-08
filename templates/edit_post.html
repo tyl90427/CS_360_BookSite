@@ -4,9 +4,10 @@ edit_post.html - This is the editing template for editing user reviews.
 
 {% extends 'base.html' %}
 
-{% block title %}Edit Review{% endblock %}
+{% block title %}Edit Post{% endblock %}
 
 {% block content %}
+  <br>
   <form method="post" class="mb-4" novalidate>
     {% csrf_token %}
     {% include 'includes/form.html' %}
