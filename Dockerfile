@@ -37,6 +37,7 @@ RUN pip3 install pipenv
 RUN pip3 install django-crispy-forms
 RUN pip3 install markdown
 RUN pip3 install django-widget-tweaks
+RUN pip3 install whitenoise
 
 # Install project dependencies
 RUN pipenv install --skip-lock --system --dev
