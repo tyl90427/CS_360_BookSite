@@ -41,5 +41,5 @@ RUN pip3 install django-widget-tweaks
 # Install project dependencies
 RUN pipenv install --skip-lock --system --dev
 
-EXPOSE 8888
+EXPOSE 8000
 CMD gunicorn mysite.wsgi:application --bind 0.0.0.0:$PORT
