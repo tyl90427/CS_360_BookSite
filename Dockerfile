@@ -1,5 +1,5 @@
 # Base Image
-FROM python:3.6
+FROM python:3.7
 
 # create and set working directory
 RUN mkdir /app
@@ -39,4 +39,4 @@ RUN pip3 install pipenv
 RUN pipenv install --skip-lock --system --dev
 
 EXPOSE 8888
-CMD gunicorn cfehome.wsgi:application --bind 0.0.0.0:$PORT
+CMD gunicorn mysite.wsgi:application --bind 0.0.0.0:$PORT
